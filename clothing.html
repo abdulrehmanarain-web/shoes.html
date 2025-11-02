@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zaroon Couture — Luxury Pakistani Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf9f6;
+    --card:#ffffff;
+    --accent:#0b4d3a;       /* deep emerald */
+    --gold:#c79b46;         /* luxury gold */
+    --muted:#6b6b6b;
+    --beige:#f3ede7;
+    --glass: rgba(11,77,58,0.06);
+    --radius:16px;
+    --max:1200px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:'Poppins',system-ui,Arial;
+    background:linear-gradient(180deg,var(--bg),#f4f1ec);
+    color:#111;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:28px;
+    display:flex;
+    justify-content:center;
+  }
+  .site{width:100%;max-width:var(--max)}
+  header{
+    display:flex;align-items:center;justify-content:space-between;padding:12px 0;
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .mark{
+    width:56px;height:56px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--gold),#ffdca0);
+    color:#08110d;font-weight:700;font-family:'Playfair Display',serif;
+    box-shadow:0 10px 30px rgba(199,155,70,0.12);
+    font-size:20px;
+  }
+  .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:18px}
+  .brand p{margin:0;font-size:12px;color:var(--muted)}
+  nav{display:flex;gap:14px;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;font-weight:600}
+  nav a:hover{color:var(--accent)}
+  .cta{
+    background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 8px 30px rgba(11,77,58,0.12)
+  }
+
+  /* HERO */
+  .hero{
+    margin-top:12px;
+    background: linear-gradient(180deg, rgba(11,77,58,0.02), rgba(0,0,0,0.00));
+    border-radius:20px;padding:32px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;
+    box-shadow:0 14px 50px rgba(10,10,10,0.06);
+  }
+  .hero-left h2{font-family:'Playfair Display',serif;font-size:38px;margin:0 0 8px;color:#0b3c2e}
+  .hero-left p{margin:0 0 16px;color:var(--muted);max-width:58ch;line-height:1.6}
+  .hero-cta{display:flex;gap:12px;align-items:center}
+  .btn{padding:12px 18px;border-radius:12px;background:var(--gold);color:#08110d;font-weight:700;text-decoration:none;cursor:pointer;border:none}
+  .btn.secondary{background:transparent;border:1px solid rgba(11,77,58,0.08);color:var(--accent);font-weight:600}
+  .hero-right{display:flex;flex-direction:column;gap:12px}
+  .hero-card{background:var(--card);padding:16px;border-radius:14px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+  .hero-card img{width:78px;height:78px;object-fit:cover;border-radius:10px}
+  .hero-urdu{font-size:14px;color:var(--muted);font-weight:600}
+
+  /* collections */
+  .section{margin-top:28px}
+  .section h3{font-family:'Playfair Display',serif;margin:0 0 10px;font-size:22px;color:#0b3c2e}
+  .filters{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .pill{padding:8px 12px;border-radius:999px;background:var(--beige);font-weight:600;color:var(--accent);cursor:pointer;border:1px solid rgba(11,77,58,0.06)}
+  .pill.active{background:linear-gradient(90deg,var(--accent),#2e7a5e);color:#fff;border:none;box-shadow:0 8px 22px rgba(11,77,58,0.08)}
+
+  /* product grid */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .card{background:var(--card);border-radius:14px;padding:12px;box-shadow:0 8px 30px rgba(0,0,0,0.04);transition:transform .24s ease, box-shadow .24s ease;overflow:hidden}
+  .card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.08)}
+  .card img{width:100%;height:240px;object-fit:cover;border-radius:12px}
+  .card h4{margin:10px 0 6px;font-size:16px}
+  .price{color:var(--gold);font-weight:700}
+  .meta{color:var(--muted);font-size:13px}
+  .card .actions{display:flex;gap:8px;margin-top:10px}
+  .add{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(11,77,58,0.06);background:transparent;cursor:pointer;font-weight:700}
+  .fav{width:44px;border-radius:10px;border:1px solid rgba(11,77,58,0.06);background:transparent;cursor:pointer}
+
+  /* cart drawer */
+  .cart-btn{position:fixed;right:26px;bottom:26px;background:var(--accent);color:#fff;padding:12px 16px;border-radius:999px;box-shadow:0 12px 40px rgba(11,77,58,0.18);border:none;cursor:pointer;z-index:50}
+  .drawer{position:fixed;right:0;top:0;height:100vh;width:380px;background:linear-gradient(180deg,#fff, #fbf9f6);box-shadow:-30px 0 60px rgba(0,0,0,0.12);transform:translateX(120%);transition:transform .36s cubic-bezier(.2,.9,.2,1);padding:20px;z-index:60;overflow:auto}
+  .drawer.open{transform:translateX(0)}
+  .drawer h3{margin:0 0 10px;color:var(--accent);font-family:'Playfair Display',serif}
+  .cart-item{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(11,77,58,0.04)}
+  .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+  .qty{display:flex;gap:8px;align-items:center}
+  .qty button{padding:6px 8px;border-radius:8px;border:1px solid rgba(11,77,58,0.06);cursor:pointer;background:transparent}
+  .total{font-weight:800;font-size:18px;color:var(--accent);margin-top:12px}
+
+  /* product modal */
+  .modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);background:var(--card);padding:18px;border-radius:12px;box-shadow:0 40px 90px rgba(0,0,0,0.6);width:min(920px,96%);display:none;z-index:80}
+  .modal.show{display:block;animation:pop .28s ease}
+  @keyframes pop{from{opacity:0;transform:translate(-50%,-52%) scale(.96)} to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  .modal-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+  .gallery{display:flex;gap:10px;flex-direction:column}
+  .gallery img{width:100%;height:420px;object-fit:cover;border-radius:10px}
+  .thumbs{display:flex;gap:8px}
+  .thumbs img{width:70px;height:70px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
+  .thumbs img.active{border-color:var(--accent)}
+
+  .close-x{background:transparent;border:0;color:var(--muted);position:absolute;right:16px;top:12px;font-weight:700;cursor:pointer}
+
+  /* sections: about, contact */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .about-card{background:linear-gradient(180deg, rgba(11,77,58,0.02), transparent);padding:18px;border-radius:12px}
+  .contact form{display:grid;gap:10px}
+  .field input, .field textarea{padding:12px;border-radius:10px;border:1px solid rgba(11,77,58,0.06)}
+  .socials{display:flex;gap:8px;margin-top:8px}
+  .socials a{padding:8px 10px;border-radius:8px;border:1px solid rgba(11,77,58,0.06);text-decoration:none;color:var(--accent);font-weight:700}
+
+  /* newsletter */
+  .newsletter{display:flex;gap:8px;margin-top:12px}
+  .newsletter input{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(11,77,58,0.06)}
+
+  /* testimonials / instagram placeholder */
+  .testi{background:var(--beige);padding:12px;border-radius:12px}
+  .ig{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .ig img{width:100%;height:100px;object-fit:cover;border-radius:8px}
+
+  footer{margin-top:28px;padding:12px;text-align:center;color:var(--muted);font-size:13px}
+
+  /* responsive */
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .modal-grid{grid-template-columns:1fr}
+    .ig{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:560px){
+    nav{display:none}
+    .grid{grid-template-columns:1fr}
+    .drawer{width:100%}
+    .hero-left h2{font-size:28px}
+  }
+</style>
+</head>
+<body>
+  <div class="site">
+
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="mark">Z</div>
+        <div>
+          <h1>Zaroon Couture</h1>
+          <p>Contemporary Pakistani luxury</p>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="#shop">Shop</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <h2>Refined tradition. Modern silhouettes.</h2>
+        <p>Zaroon Couture blends artisanal Pakistani craftsmanship with modern tailoring — luxurious fabrics, thoughtful details, and seasonal collections that celebrate our heritage.<br><strong class="hero-urdu">خوبصورتی کا نیا انداز</strong></p>
+        <div class="hero-cta">
+          <button class="btn" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop the Collection</button>
+          <button class="btn secondary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+        </div>
+
+        <div style="margin-top:18px">
+          <div style="font-weight:700;margin-bottom:6px">Subscribe for early access</div>
+          <div class="newsletter">
+            <input id="newsletterEmail" placeholder="Your email" />
+            <button class="btn" id="subscribeBtn">Subscribe</button>
+          </div>
+          <div id="subscribeMsg" style="color:var(--muted);font-size:13px;margin-top:8px"></div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1545996124-8fa63c61d4d4?w=800" alt="craft">
+          <div>
+            <div style="font-weight:700">Handcrafted</div>
+            <div style="color:var(--muted);font-size:13px">Traditional techniques with modern finish</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800" alt="fabric">
+          <div>
+            <div style="font-weight:700">Premium Fabrics</div>
+            <div style="color:var(--muted);font-size:13px">Silk, lawn, fine linens & embroidered tulles</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1553456558-aff63285bdd2?w=800" alt="boutique">
+          <div>
+            <div style="font-weight:700">Boutique Experience</div>
+            <div style="color:var(--muted);font-size:13px">Personal styling & custom fittings</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- COLLECTIONS / PRODUCTS -->
+    <section class="section" id="collections">
+      <h3>Collections</h3>
+      <div class="filters" id="filters">
+        <div class="pill active" data-filter="all">All</div>
+        <div class="pill" data-filter="women">Women</div>
+        <div class="pill" data-filter="men">Men</div>
+        <div class="pill" data-filter="kids">Kids</div>
+        <div class="pill" data-filter="festive">Festive</div>
+      </div>
+
+      <div id="shop" class="grid" aria-live="polite">
+        <!-- Product cards (data attributes used for filtering) -->
+        <!-- Item 1 -->
+        <div class="card" data-category="women" data-id="p1">
+          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55f7c?w=1000" alt="Embroidered Shirt">
+          <h4>Embroidered Lawn Shirt</h4>
+          <div class="meta">Lightweight lawn — signature embroidery</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 18,499</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p1')">View</button>
+              <button class="fav" onclick="addToCart('p1')">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="card" data-category="women" data-id="p2">
+          <img src="https://images.unsplash.com/photo-1582450167126-5cf3d4b2fc8b?w=1000" alt="Silk Kurta">
+          <h4>Silk Kurta Set</h4>
+          <div class="meta">Pure silk — tailored fit</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 42,999</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p2')">View</button>
+              <button class="fav" onclick="addToCart('p2')">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="card" data-category="men" data-id="p3">
+          <img src="https://images.unsplash.com/photo-1520975911613-0b2b0f8f4f2d?w=1000" alt="Men's Sherwani">
+          <h4>Classic Sherwani</h4>
+          <div class="meta">Wool blend, subtle embroidery</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 95,000</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p3')">View</button>
+              <button class="fav" onclick="addToCart('p3')">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="card" data-category="festive" data-id="p4">
+          <img src="https://images.unsplash.com/photo-1503342452485-86f7b18f7a6f?w=1000" alt="Festive Lehenga">
+          <h4>Festive Lehenga</h4>
+          <div class="meta">Heavy embroidery — statement piece</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 225,000</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p4')">View</button>
+              <button class="fav" onclick="addToCart('p4')">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="card" data-category="kids" data-id="p5">
+          <img src="https://images.unsplash.com/photo-1562158070-9c0b3f3d4e3b?w=1000" alt="Kids Kurta">
+          <h4>Kids Kurta Pajama</h4>
+          <div class="meta">Comfortable cotton</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 4,499</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p5')">View</button>
+              <button class="fav" onclick="addToCart('p5')">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="card" data-category="women" data-id="p6">
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4b3a1a9?w=1000" alt="Chiffon Dupatta">
+          <h4>Chiffon Dupatta (Embellished)</h4>
+          <div class="meta">Classic drape — delicate sequin</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 8,999</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p6')">View</button>
+              <button class="fav" onclick="addToCart('p6')">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="card" data-category="men" data-id="p7">
+          <img src="https://images.unsplash.com/photo-1520975911613-0b2b0f8f4f2d?w=1000" alt="Men's Kurta">
+          <h4>Everyday Kurta</h4>
+          <div class="meta">Breathable cotton — casual</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 6,499</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p7')">View</button>
+              <button class="fav" onclick="addToCart('p7')">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="card" data-category="festive" data-id="p8">
+          <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=1000" alt="Embellished Shirt">
+          <h4>Embellished Shirt</h4>
+          <div class="meta">Festive elegance</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div class="price">PKR 34,999</div>
+            <div class="actions">
+              <button class="add" onclick="openModal('p8')">View</button>
+              <button class="fav" onclick="addToCart('p8')">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials & IG -->
+    <section class="section">
+      <h3>What clients say</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+        <div class="testi" style="flex:1;min-width:220px">“Amazing fabric and fit — I'll be back.” — Ayesha</div>
+        <div class="testi" style="flex:1;min-width:220px">“Beautiful embroidery, great customer service.” — Rabia</div>
+        <div class="testi" style="flex:1;min-width:220px">“Perfect for my wedding — everyone loved it.” — Umar</div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="meta" style="margin-bottom:8px">Instagram</div>
+        <div class="ig">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800" alt="">
+          <img src="https://images.unsplash.com/photo-1520975911613-0b2b0f8f4f2d?w=800" alt="">
+          <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=800" alt="">
+          <img src="https://images.unsplash.com/photo-1545996124-8fa63c61d4d4?w=800" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <h3>About Zaroon</h3>
+      <div class="two-col" style="margin-top:10px">
+        <div class="about-card">
+          <p style="margin:0;color:var(--muted)">Zaroon Couture was founded to celebrate Pakistani textiles and artisanal craft. We partner with local artisans for handwork and use responsibly sourced fabrics to create elegant garments that feel modern yet rooted in tradition. Every collection is curated with a focus on fit, fabric, and detail — meant to be treasured.</p>
+          <div style="margin-top:12px">
+            <strong>Our values:</strong>
+            <ul style="margin:8px 0 0 18px;color:var(--muted)">
+              <li>Heritage-inspired design</li>
+              <li>Quality craftsmanship</li>
+              <li>Conscious sourcing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <h4 style="margin-top:0">Our Boutique</h4>
+          <p style="margin:0;color:var(--muted)">Visit our flagship store for bespoke fittings and private appointments. Address: Boutique 12, Fashion Street, Lahore.</p>
+          <div style="margin-top:12px">
+            <a class="socials" href="#" aria-label="Instagram">Instagram</a>
+            <a class="socials" href="#" aria-label="Facebook">Facebook</a>
+            <a class="socials" href="#" aria-label="TikTok">TikTok</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <h3>Contact</h3>
+      <div class="two-col" style="margin-top:10px">
+        <div>
+          <p style="margin:0 0 10px 0;color:var(--muted)">Questions? Book an appointment or send us a message.</p>
+          <div class="contact">
+            <form id="contactForm">
+              <div class="field"><input id="cname" placeholder="Your name" required></div>
+              <div class="field"><input id="cemail" type="email" placeholder="Email" required></div>
+              <div class="field"><input id="csubject" placeholder="Subject"></div>
+              <div class="field"><textarea id="cmessage" rows="4" placeholder="Message"></textarea></div>
+              <button class="btn" type="submit">Send Message</button>
+            </form>
+            <div id="contactMsg" style="margin-top:8px;color:var(--muted)"></div>
+          </div>
+        </div>
+
+        <aside class="about-card">
+          <h4 style="margin:0 0 8px 0">Store Hours</h4>
+          <div style="color:var(--muted)">Mon–Sat: 10:00 — 19:00</div>
+          <div style="margin-top:12px;color:var(--muted);font-size:14px">Phone: +92 300 0000000<br> Email: hello@zarooncouture.pk</div>
+
+          <div style="margin-top:12px">
+            <strong style="color:var(--muted)">Map & Address</strong>
+            <div style="height:120px;background:linear-gradient(90deg,#efe8dd,#f7f3ef);border-radius:8px;margin-top:8px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Map Placeholder</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>© <span id="yr"></span> Zaroon Couture • Designed with care in Pakistan</footer>
+  </div>
+
+  <!-- CART BUTTON & DRAWER -->
+  <button class="cart-btn" id="openCart">Cart (<span id="cartCount">0</span>)</button>
+  <aside class="drawer" id="cartDrawer" aria-hidden="true">
+    <h3>Your Cart</h3>
+    <div id="cartItems"></div>
+    <div class="total" id="cartTotal">Total: PKR 0</div>
+    <div style="margin-top:12px">
+      <button class="btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="btn secondary" id="closeCart" style="margin-left:8px">Close</button>
+    </div>
+    <div id="checkoutArea" style="display:none;margin-top:14px">
+      <h4 style="margin:12px 0 8px 0">Checkout (mock)</h4>
+      <div style="display:grid;gap:8px">
+        <input id="shipName" placeholder="Full name">
+        <input id="shipPhone" placeholder="Phone">
+        <input id="shipAddress" placeholder="Address">
+        <button class="btn" id="placeOrder">Place Order (mock)</button>
+      </div>
+      <div id="orderMsg" style="margin-top:8px;color:var(--muted)"></div>
+    </div>
+  </aside>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal" id="productModal" role="dialog" aria-hidden="true">
+    <button class="close-x" id="closeModal">✕</button>
+    <div class="modal-grid">
+      <div>
+        <div class="gallery" id="modalGallery">
+          <img id="modalMain" src="" alt="product image">
+          <div class="thumbs" id="modalThumbs"></div>
+        </div>
+      </div>
+      <div>
+        <h3 id="modalTitle" style="margin-top:0"></h3>
+        <div id="modalDesc" style="color:var(--muted);margin-bottom:8px"></div>
+        <div style="font-weight:800;color:var(--gold);margin-bottom:10px" id="modalPrice"></div>
+        <div style="margin-bottom:10px">
+          <strong>Fabric:</strong> <span id="modalFabric" style="color:var(--muted)"></span>
+        </div>
+        <div style="margin-bottom:10px">
+          <strong>Sizes:</strong>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="pill" onclick="showSizeChart()">Size Chart</button>
+            <select id="modalSize" style="padding:10px;border-radius:10px;border:1px solid rgba(11,77,58,0.06)">
+              <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn" id="modalAdd">Add to Cart</button>
+          <button class="btn secondary" id="modalWish">Add to Wishlist</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIZE CHART (simple modal) -->
+  <div class="modal" id="sizeChart" role="dialog" aria-hidden="true" style="width:520px">
+    <button class="close-x" onclick="closeSizeChart()">✕</button>
+    <h3 style="margin-top:0">Size Chart (cm)</h3>
+    <table style="width:100%;border-collapse:collapse">
+      <tr><td style="padding:8px;border-bottom:1px solid #eee">Size</td><td style="padding:8px;border-bottom:1px solid #eee">Chest</td><td style="padding:8px;border-bottom:1px solid #eee">Waist</td></tr>
+      <tr><td style="padding:8px">S</td><td style="padding:8px">86-91</td><td style="padding:8px">66-71</td></tr>
+      <tr><td style="padding:8px">M</td><td style="padding:8px">92-97</td><td style="padding:8px">72-77</td></tr>
+      <tr><td style="padding:8px">L</td><td style="padding:8px">98-103</td><td style="padding:8px">78-83</td></tr>
+      <tr><td style="padding:8px">XL</td><td style="padding:8px">104-110</td><td style="padding:8px">84-90</td></tr>
+    </table>
+  </div>
+
+<script>
+  // Simple product data (ids match data-id attributes)
+  const PRODUCTS = {
+    p1:{id:'p1',title:'Embroidered Lawn Shirt',price:18499,desc:'Lightweight lawn with delicate thread embroidery.',fabric:'Premium Lawn',images:[
+      'https://images.unsplash.com/photo-1543163521-1bf539c55f7c?w=1200',
+      'https://images.unsplash.com/photo-1545996124-8fa63c61d4d4?w=1200'
+    ]},
+    p2:{id:'p2',title:'Silk Kurta Set',price:42999,desc:'Pure silk kurta with tailored trousers.',fabric:'Pure Silk',images:[
+      'https://images.unsplash.com/photo-1582450167126-5cf3d4b2fc8b?w=1200',
+      'https://images.unsplash.com/photo-1520975911613-0b2b0f8f4f2d?w=1200'
+    ]},
+    p3:{id:'p3',title:'Classic Sherwani',price:95000,desc:'Wool blend sherwani with subtle embroidery.',fabric:'Wool Blend',images:[
+      'https://images.unsplash.com/photo-1520975911613-0b2b0f8f4f2d?w=1200'
+    ]},
+    p4:{id:'p4',title:'Festive Lehenga',price:225000,desc:'Statement lehenga with heavy handwork.',fabric:'Embroidered Tulle',images:[
+      'https://images.unsplash.com/photo-1503342452485-86f7b18f7a6f?w=1200'
+    ]},
+    p5:{id:'p5',title:'Kids Kurta Pajama',price:4499,desc:'Comfortable cotton kurta set for kids.',fabric:'Soft Cotton',images:[
+      'https://images.unsplash.com/photo-1562158070-9c0b3f3d4e3b?w=1200'
+    ]},
+    p6:{id:'p6',title:'Chiffon Dupatta (Embellished)',price:8999,desc:'Elegant chiffon dupatta with sequin border.',fabric:'Chiffon',images:[
+      'https://images.unsplash.com/photo-1600185365483-26d7a4b3a1a9?w=1200'
+    ]},
+    p7:{id:'p7',title:'Everyday Kurta',price:6499,desc:'Breathable cotton kurta for daily wear.',fabric:'Cotton',images:[
+      'https://images.unsplash.com/photo-1520975911613-0b2b0f8f4f2d?w=1200'
+    ]},
+    p8:{id:'p8',title:'Embellished Shirt',price:34999,desc:'Festive embellished shirt for celebrations.',fabric:'Silk Blend',images:[
+      'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=1200'
+    ]}
+  };
+
+  // Cart (simple)
+  let CART = {}; // id -> {product, qty, size}
+  const cartCount = document.getElementById('cartCount');
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const cartDrawer = document.getElementById('cartDrawer');
+  const openCartBtn = document.getElementById('openCart');
+  const closeCartBtn = document.getElementById('closeCart');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const checkoutArea = document.getElementById('checkoutArea');
+
+  function formatPKR(n){
+    // simple thousands separator
+    return 'PKR ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function addToCart(id, size='M'){
+    const p = PRODUCTS[id];
+    if(!p) return alert('Product not found');
+    if(CART[id]) CART[id].qty++;
+    else CART[id] = {product:p, qty:1, size};
+    renderCart();
+  }
+
+  function renderCart(){
+    cartItemsEl.innerHTML = '';
+    let total = 0;
+    let count = 0;
+    for(const id in CART){
+      const item = CART[id];
+      total += item.product.price * item.qty;
+      count += item.qty;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <img src="${item.product.images[0]}" alt="${item.product.title}">
+        <div style="flex:1">
+          <div style="font-weight:700">${item.product.title}</div>
+          <div style="color:var(--muted);font-size:13px">Size: ${item.size}</div>
+          <div style="margin-top:6px;font-weight:700">${formatPKR(item.product.price)} x ${item.qty}</div>
+        </div>
+        <div>
+          <div class="qty">
+            <button onclick="changeQty('${id}', -1)">−</button>
+            <div style="padding:6px 8px">${item.qty}</div>
+            <button onclick="changeQty('${id}', 1)">+</button>
+          </div>
+          <div style="margin-top:8px"><button onclick="removeItem('${id}')" style="border:none;background:transparent;color:var(--muted);cursor:pointer">Remove</button></div>
+        </div>
+      `;
+      cartItemsEl.appendChild(div);
+    }
+    cartCount.textContent = count;
+    cartTotalEl.textContent = 'Total: ' + formatPKR(total);
+  }
+
+  function changeQty(id, delta){
+    if(!CART[id]) return;
+    CART[id].qty += delta;
+    if(CART[id].qty <= 0) delete CART[id];
+    renderCart();
+  }
+  function removeItem(id){
+    delete CART[id]; renderCart();
+  }
+
+  openCartBtn.addEventListener('click', ()=>{ cartDrawer.classList.add('open'); cartDrawer.setAttribute('aria-hidden','false'); });
+  closeCartBtn.addEventListener('click', ()=>{ cartDrawer.classList.remove('open'); cartDrawer.setAttribute('aria-hidden','true'); });
+
+  checkoutBtn.addEventListener('click', ()=>{
+    checkoutArea.style.display = 'block';
+    checkoutArea.scrollIntoView({behavior:'smooth'});
+  });
+
+  // Product modal
+  const modal = document.getElementById('productModal');
+  const modalMain = document.getElementById('modalMain');
+  const modalThumbs = document.getElementById('modalThumbs');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalFabric = document.getElementById('modalFabric');
+  const modalAddBtn = document.getElementById('modalAdd');
+  const closeModalBtn = document.getElementById('closeModal');
+
+  let currentProduct = null;
+
+  function openModal(id){
+    const p = PRODUCTS[id];
+    if(!p) return;
+    currentProduct = p;
+    modalTitle.textContent = p.title;
+    modalDesc.textContent = p.desc;
+    modalPrice.textContent = formatPKR(p.price);
+    modalFabric.textContent = p.fabric;
+    modalMain.src = p.images[0];
+    modalThumbs.innerHTML = '';
+    p.images.forEach((src, i)=>{
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = i===0? 'active' : '';
+      img.onclick = ()=>{ modalMain.src = src; document.querySelectorAll('#modalThumbs img').forEach(el=>el.classList.remove('active')); img.classList.add('active'); };
+      modalThumbs.appendChild(img);
+    });
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+  }
+  closeModalBtn.addEventListener('click', ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); currentProduct=null; });
+
+  document.getElementById('modalAdd').addEventListener('click', ()=>{
+    if(!currentProduct) return;
+    const size = document.getElementById('modalSize').value;
+    addToCart(currentProduct.id, size);
+    modal.classList.remove('show');
+  });
+
+  function showSizeChart(){ document.getElementById('sizeChart').classList.add('show'); document.getElementById('sizeChart').setAttribute('aria-hidden','false'); }
+  function closeSizeChart(){ document.getElementById('sizeChart').classList.remove('show'); document.getElementById('sizeChart').setAttribute('aria-hidden','true'); }
+
+  // Filtering
+  document.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      const filt = p.dataset.filter;
+      document.querySelectorAll('.grid .card').forEach(card=>{
+        if(filt === 'all' || card.dataset.category === filt) card.style.display = '';
+        else card.style.display = 'none';
+      });
+      window.scrollTo({top: document.getElementById('collections').offsetTop - 60, behavior:'smooth'});
+    });
+  });
+
+  // newsletter
+  document.getElementById('subscribeBtn').addEventListener('click', ()=>{
+    const email = document.getElementById('newsletterEmail').value.trim();
+    const msg = document.getElementById('subscribeMsg');
+    if(!email) return msg.textContent = 'Please enter an email address';
+    msg.textContent = 'Thanks! You will receive early access updates.';
+    document.getElementById('newsletterEmail').value = '';
+  });
+
+  // contact form (mock)
+  document.getElementById('contactForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    document.getElementById('contactMsg').textContent = 'Thanks — we will be in touch soon.';
+    document.getElementById('contactForm').reset();
+  });
+
+  // place order (mock)
+  document.getElementById('placeOrder').addEventListener('click', ()=>{
+    const name = document.getElementById('shipName').value.trim();
+    if(!name) { document.getElementById('orderMsg').textContent = 'Please enter your name'; return; }
+    document.getElementById('orderMsg').textContent = 'Order placed (mock). We will contact you for payment & delivery.';
+    CART = {}; renderCart();
+    checkoutArea.style.display='none';
+  });
+
+  // set year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // basic accessibility: close modals with Esc
+  window.addEventListener('keydown',(e)=>{
+    if(e.key === 'Escape'){ document.querySelectorAll('.modal.show').forEach(m=>m.classList.remove('show')); cartDrawer.classList.remove('open'); }
+  });
+
+  // init
+  renderCart();
+
+</script>
+</body>
+</html>
