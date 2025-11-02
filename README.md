@@ -1,5 +1,3 @@
-# shoes.html
-shoes website
 <!doctype html>
 <html lang="en">
 <head>
