@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Marquis Footwear — Premium Shoes</title>
+<style>
+:root{
+  --bg:#f6f5f3;
+  --card:#ffffffcc;
+  --accent:#1f628a;
+  --gold:#cba135;
+  --muted:#666;
+  --radius:16px;
+  font-family: 'Poppins', system-ui, sans-serif;
+}
+*{box-sizing:border-box;transition:all .3s ease;}
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--bg),#e8ebee);
+  color:#111;
+  padding:36px;
+  display:flex;
+  justify-content:center;
+  scroll-behavior:smooth;
+}
+.wrap{
+  max-width:1150px;
+  width:100%;
+}
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 0;
+}
+.logo{
+  font-weight:800;
+  letter-spacing:2px;
+  font-size:22px;
+  color:var(--accent);
+}
+nav a{
+  margin:0 10px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:500;
+}
+nav a:hover{color:var(--accent);}
+
+.hero{
+  background:linear-gradient(90deg, rgba(31,98,138,0.08), transparent);
+  border-radius:20px;
+  padding:30px;
+  display:flex;
+  gap:30px;
+  align-items:center;
+  box-shadow:0 10px 35px rgba(31,98,138,0.08);
+  overflow:hidden;
+}
+
+.shoe img{
+  width:380px;
+  height:auto;
+  border-radius:var(--radius);
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
+  transform:rotate(-2deg);
+}
+
+.info h2{
+  margin:0;
+  font-size:32px;
+}
+.info p{color:var(--muted);max-width:450px;font-size:15px;}
+
+.btn{
+  display:inline-block;
+  margin-top:14px;
+  padding:12px 18px;
+  border-radius:12px;
+  background:var(--accent);
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+  box-shadow:0 4px 14px rgba(31,98,138,0.2);
+}
+.btn:hover{background:#184b69;transform:translateY(-2px);}
+
+.list{
+  display:flex;
+  gap:16px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+.card{
+  background:var(--card);
+  padding:16px;
+  border-radius:var(--radius);
+  flex:1;
+  min-width:220px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  text-align:center;
+  backdrop-filter:blur(10px);
+}
+.card:hover{
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:0 12px 30px rgba(31,98,138,0.15);
+}
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:var(--radius);
+}
+.card h3{
+  margin:10px 0 6px;
+  font-size:17px;
+}
+.card small{color:var(--muted);font-weight:500;}
+
+footer{
+  margin-top:30px;
+  color:var(--muted);
+  font-size:13px;
+  text-align:center;
+}
+@media(max-width:880px){
+  .hero{flex-direction:column;text-align:center;}
+  .shoe img{width:100%;max-width:400px;}
+  .list{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">Marquis</div>
+    <nav>
+      <a href="#">New</a>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">Custom</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="shoe">
+      <img src="https://images.unsplash.com/photo-1600185365483-26d7a4b3a1a9?w=900" alt="Shoe">
+    </div>
+    <div class="info">
+      <h2>Performance + Elegance</h2>
+      <p>Engineered for comfort, finished with a timeless silhouette. Hand-stitched welt and memory-foam insole for all-day wear.</p>
+      <a href="#" class="btn">Explore Collection</a>
+      <div class="list">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1618354691373-d852f1cbf0f8?w=600" alt="Leather Originals">
+          <h3>Leather Originals</h3>
+          <small>From PKR 74,999</small>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1589187155478-5b8af67ff225?w=600" alt="Urban Runners">
+          <h3>Urban Runners</h3>
+          <small>From PKR 42,499</small>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600" alt="Custom Order">
+          <h3>Custom Order</h3>
+          <small>Lead time applies</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="yr"></span> Marquis Footwear — Made to Last
+  </footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
