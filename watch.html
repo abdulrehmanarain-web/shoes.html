@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Timely — Premium Watches</title>
+  <meta name="description" content="Timely — premium watches shop. Clean responsive layout, product grid, quick view, cart and contact form." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* small custom styles */
+    .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(6px); }
+    .card-img { height: 220px; object-fit: cover; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+  <!-- NAV -->
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-6">
+          <a href="#" class="text-2xl font-bold tracking-tight text-slate-800">Timely</a>
+          <nav class="hidden md:flex gap-4 text-sm">
+            <a href="#collections" class="py-2 px-3 hover:text-sky-600">Collections</a>
+            <a href="#featured" class="py-2 px-3 hover:text-sky-600">Featured</a>
+            <a href="#about" class="py-2 px-3 hover:text-sky-600">About</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button id="searchBtn" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100">🔍 Search</button>
+          <button id="cartBtn" class="relative inline-flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100">
+            🛒 <span id="cartCount" class="ml-1 text-sm">0</span>
+          </button>
+
+          <button id="menuBtn" class="md:hidden p-2 rounded-md hover:bg-gray-100">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-14">
+        <div>
+          <span class="inline-block px-3 py-1 text-sm bg-sky-100 text-sky-700 rounded-full">New Arrival</span>
+          <h1 class="mt-4 text-4xl font-extrabold leading-tight">Timeless design. Modern precision.</h1>
+          <p class="mt-4 text-gray-600">Explore our curated collection of premium watches — handcrafted movements, resilient materials, and refined looks for every occasion.</p>
+          <div class="mt-6 flex gap-3">
+            <a href="#collections" class="inline-flex items-center px-5 py-3 bg-sky-600 text-white rounded-md shadow hover:bg-sky-700">Shop Collections</a>
+            <a href="#about" class="inline-flex items-center px-5 py-3 border rounded-md hover:bg-gray-100">Learn more</a>
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <div class="rounded-2xl overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1519741494796-7b0b6dd7f5aa?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0a6e6b68e14f3d6a8b0dc3b4a3f5b5e3" alt="luxury watch" class="w-full h-96 object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS + COLLECTIONS -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="collections" class="mt-6">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <h2 class="text-2xl font-semibold">Collections</h2>
+        <div class="flex gap-2 items-center">
+          <label class="text-sm text-gray-600">Sort</label>
+          <select id="sortSelect" class="px-3 py-2 rounded-md border">
+            <option value="popular">Most Popular</option>
+            <option value="new">New Arrivals</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
+        <!-- product cards inserted by JS -->
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section id="featured" class="mt-16">
+      <h3 class="text-xl font-semibold">Featured Picks</h3>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="bg-white p-4 rounded-lg shadow-md flex gap-4 items-center">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f1b3a5c7b7a4c0a" alt="mesh-watch" class="w-28 h-28 object-cover rounded-md" />
+          <div>
+            <h4 class="font-semibold">Sleek Mesh</h4>
+            <p class="text-sm text-gray-600">Minimal dial and comfortable mesh strap.</p>
+            <div class="mt-2 font-semibold">$249</div>
+          </div>
+        </article>
+        <article class="bg-white p-4 rounded-lg shadow-md flex gap-4 items-center">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f1b3a5c7b7a4c0a" alt="sport-watch" class="w-28 h-28 object-cover rounded-md" />
+          <div>
+            <h4 class="font-semibold">Rugged Sport</h4>
+            <p class="text-sm text-gray-600">Water-resistant, sapphire crystal.</p>
+            <div class="mt-2 font-semibold">$329</div>
+          </div>
+        </article>
+        <article class="bg-white p-4 rounded-lg shadow-md flex gap-4 items-center">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f1b3a5c7b7a4c0a" alt="classic-watch" class="w-28 h-28 object-cover rounded-md" />
+          <div>
+            <h4 class="font-semibold">Classic Chrono</h4>
+            <p class="text-sm text-gray-600">Timeless design for dress occasions.</p>
+            <div class="mt-2 font-semibold">$399</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="mt-16 bg-white p-8 rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold">About Timely</h3>
+      <p class="mt-2 text-gray-600">We craft watches with attention to detail — reliable movements, premium materials, and approachable prices. Our workshop partners follow strict quality checks and every watch ships with a 2-year warranty.</p>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="mt-12 mb-24 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h4 class="font-semibold">Stay in touch</h4>
+        <p class="mt-2 text-sm text-gray-600">Sign up for restock alerts and new releases.</p>
+        <form id="newsletterForm" class="mt-4 flex gap-2">
+          <input required type="email" placeholder="Your email" class="flex-1 px-3 py-2 border rounded-md" />
+          <button class="px-4 py-2 bg-sky-600 text-white rounded-md">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h4 class="font-semibold">Contact us</h4>
+        <form id="contactForm" class="mt-4 grid grid-cols-1 gap-3">
+          <input required type="text" placeholder="Your name" class="px-3 py-2 border rounded-md" />
+          <input required type="email" placeholder="Your email" class="px-3 py-2 border rounded-md" />
+          <textarea required rows="4" placeholder="Message" class="px-3 py-2 border rounded-md"></textarea>
+          <button class="px-4 py-2 bg-slate-800 text-white rounded-md">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h5 class="font-semibold">Timely</h5>
+        <p class="mt-2 text-sm text-gray-300">Premium watches — worldwide shipping. 2-year warranty on all products.</p>
+      </div>
+      <div>
+        <h6 class="font-semibold">Support</h6>
+        <ul class="mt-2 text-sm text-gray-300">
+          <li>Help Center</li>
+          <li>Warranty & Repairs</li>
+          <li>Shipping</li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="font-semibold">Follow</h6>
+        <div class="mt-2 flex gap-3 text-gray-300">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRODUCT TEMPLATE & MODAL -->
+  <template id="productTemplate">
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
+      <div class="h-56 overflow-hidden">
+        <img class="w-full h-full object-cover card-img" alt="Product image" />
+      </div>
+      <div class="p-4 flex-1 flex flex-col">
+        <h4 class="font-semibold product-title"></h4>
+        <p class="text-sm text-gray-500 mt-1 product-desc"></p>
+        <div class="mt-auto flex items-center justify-between">
+          <div class="font-semibold product-price"></div>
+          <div class="flex items-center gap-2">
+            <button class="quickBtn px-3 py-1 border rounded-md text-sm">Quick view</button>
+            <button class="addBtn px-3 py-1 bg-sky-600 text-white rounded-md text-sm">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <div id="modal" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg max-w-3xl w-full overflow-hidden">
+      <div class="p-4 flex justify-between items-start">
+        <div>
+          <h3 id="modalTitle" class="text-xl font-semibold"></h3>
+          <p id="modalPrice" class="text-sky-600 font-semibold mt-1"></p>
+        </div>
+        <button id="closeModal" class="text-gray-500">✕</button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        <img id="modalImg" src="" alt="" class="w-full h-72 object-cover rounded-md" />
+        <div>
+          <p id="modalDesc" class="text-gray-700"></p>
+          <div class="mt-4">
+            <label class="text-sm">Quantity</label>
+            <input id="modalQty" type="number" min="1" value="1" class="w-24 px-2 py-1 border rounded-md" />
+          </div>
+          <div class="mt-6 flex gap-2">
+            <button id="modalAdd" class="px-4 py-2 bg-sky-600 text-white rounded-md">Add to cart</button>
+            <button id="modalClose" class="px-4 py-2 border rounded-md">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample product data
+    const products = [
+      { id:1, title:'Aeron Classic', price:199, desc:'Elegant three-hand watch with leather strap.', img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f1b3a5c7b7a4c0a' },
+      { id:2, title:'Voyager Sport', price:329, desc:'Rugged sports watch with chronograph.', img:'https://images.unsplash.com/photo-1519741494796-7b0b6dd7f5aa?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=0a6e6b68e14f3d6a8b0dc3b4a3f5b5e3' },
+      { id:3, title:'Luna Minimal', price:249, desc:'Minimal dial and stainless steel mesh.', img:'https://images.unsplash.com/photo-1518548819339-2c1d7b0c1a48?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=2f6b6f5c9a' },
+      { id:4, title:'Mariner Pro', price:399, desc:'Diver watch — 200m water resistance.', img:'https://images.unsplash.com/photo-1543165799-0d9a1c7a9f4b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b2d7f1c' },
+      { id:5, title:'Heritage GMT', price:449, desc:'Dual time-zone GMT complication.', img:'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=4c3b2d1a' },
+      { id:6, title:'Orbit Skeleton', price:599, desc:'Open-worked dial showing movement.', img:'https://images.unsplash.com/photo-1509221960520-5f6d9f1b3f36?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=8b9c4d7a' }
+    ];
+
+    const grid = document.getElementById('productGrid');
+    const template = document.getElementById('productTemplate');
+    const cart = { items: JSON.parse(localStorage.getItem('cart')||'[]') };
+
+    function renderProducts(list) {
+      grid.innerHTML = '';
+      list.forEach(p => {
+        const node = template.content.cloneNode(true);
+        const img = node.querySelector('img');
+        img.src = p.img; img.alt = p.title;
+        node.querySelector('.product-title').textContent = p.title;
+        node.querySelector('.product-desc').textContent = p.desc;
+        node.querySelector('.product-price').textContent = '$' + p.price;
+        node.querySelector('.quickBtn').addEventListener('click', ()=> openModal(p));
+        node.querySelector('.addBtn').addEventListener('click', ()=> addToCart(p.id,1));
+        grid.appendChild(node);
+      });
+    }
+
+    function openModal(product) {
+      document.getElementById('modalTitle').textContent = product.title;
+      document.getElementById('modalPrice').textContent = '$' + product.price;
+      document.getElementById('modalImg').src = product.img;
+      document.getElementById('modalDesc').textContent = product.desc;
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('modalAdd').onclick = ()=>{ addToCart(product.id, parseInt(document.getElementById('modalQty').value||1)); closeModal(); };
+    }
+
+    function closeModal(){ document.getElementById('modal').classList.add('hidden'); }
+    document.getElementById('closeModal').onclick = closeModal;
+    document.getElementById('modalClose').onclick = closeModal;
+
+    function addToCart(id, qty){
+      const item = cart.items.find(i=>i.id===id);
+      if(item) item.qty += qty; else cart.items.push({id, qty});
+      localStorage.setItem('cart', JSON.stringify(cart.items));
+      updateCartCount();
+      alert('Added to cart');
+    }
+
+    function updateCartCount(){
+      const count = cart.items.reduce((s,i)=>s+i.qty,0);
+      document.getElementById('cartCount').textContent = count;
+    }
+
+    document.getElementById('cartBtn').addEventListener('click', ()=>{
+      const details = cart.items.map(i=>{
+        const p = products.find(x=>x.id===i.id);
+        return `${p.title} x${i.qty} — $${p.price * i.qty}`;
+      }).join('\n');
+      if(details) alert('Cart:\n' + details);
+      else alert('Cart is empty');
+    });
+
+    // Sorting
+    document.getElementById('sortSelect').addEventListener('change', (e)=>{
+      const v = e.target.value;
+      let list = [...products];
+      if(v==='low') list.sort((a,b)=>a.price-b.price);
+      else if(v==='high') list.sort((a,b)=>b.price-a.price);
+      else if(v==='new') list = list.reverse();
+      renderProducts(list);
+    });
+
+    // Newsletter / contact form basic handlers
+    document.getElementById('newsletterForm').addEventListener('submit', e=>{ e.preventDefault(); alert('Thanks! You are subscribed.'); e.target.reset(); });
+    document.getElementById('contactForm').addEventListener('submit', e=>{ e.preventDefault(); alert('Message sent — we will reply soon.'); e.target.reset(); });
+
+    // Init
+    renderProducts(products);
+    updateCartCount();
+
+    // Close modal when clicking outside
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+
+    // Simple mobile menu (toggle)
+    document.getElementById('menuBtn').addEventListener('click', ()=> alert('Mobile menu: implement navigation links here'));
+
+  </script>
+</body>
+</html>
